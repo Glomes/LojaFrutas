@@ -46,6 +46,9 @@
 			</select>
 			
 			<div th:fragment="form"><legend>Descrição do Produto</legend>
+
+				<label  class="col-sm-1 col-form-label">Nome:</label>
+			<input type="text" th:field="*{nome}" th:required="required" />
 			
 			<label  class="col-sm-1 col-form-label">Unidade:</label>
 			<input type="text" th:field="*{unidade}" th:required="required" />
@@ -54,7 +57,7 @@
 			<input type="text" th:field="*{quantidade}" th:required="required" />
 			
 			<label class="col-sm-1 col-form-label">Preço:</label>
-			<input type="numeric" th:field="*{preco}" th:required="required" />
+			<input type="text" th:field="*{preco}" th:required="required" />
 
 			<input type="hidden" th:field="*{id}"th:required="required" th:value="${produto.id}">
 			

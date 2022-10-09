@@ -21,13 +21,13 @@ public class Produto implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	@Column(name="empresa_id")
-	private Empresa empresaId;
+	private Integer empresaId;
 	@Column(name="fornecedor_id")
-	private Fornecedor fornecedorId;
+	private Integer fornecedorId;
 	private String nome;
 	private String unidade;
 	private Integer quantidade;
-	private double preco;
+	private String preco;
 	
 	
 	public Integer getId() {
@@ -36,16 +36,16 @@ public class Produto implements Serializable {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public Empresa getEmpresaId() {
+	public Integer getEmpresaId() {
 		return empresaId;
 	}
-	public void setEmpresaId(Empresa empresaId) {
+	public void setEmpresaId(Integer empresaId) {
 		this.empresaId = empresaId;
 	}
-	public Fornecedor getFornecedorId() {
+	public Integer getFornecedorId() {
 		return fornecedorId;
 	}
-	public void setFornecedorId(Fornecedor fornecedorId) {
+	public void setFornecedorId(Integer fornecedorId) {
 		this.fornecedorId = fornecedorId;
 	}
 	public String getNome() {
@@ -66,10 +66,10 @@ public class Produto implements Serializable {
 	public void setQuantidade(Integer quantidade) {
 		this.quantidade = quantidade;
 	}
-	public double getPreco() {
+	public String getPreco() {
 		return preco;
 	}
-	public void setPreco(double preco) {
+	public void setPreco(String preco) {
 		this.preco = preco;
 	}
 	

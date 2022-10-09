@@ -5,9 +5,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import br.edu.uerr.loja.modelo.Fornecedor;
+import br.edu.uerr.loja.modelo.Empresa;
 import br.edu.uerr.loja.modelo.Produto;
 import br.edu.uerr.loja.repositorio.EmpresaRepositorio;
 import br.edu.uerr.loja.repositorio.FornecedorRepositorio;
@@ -24,12 +26,12 @@ public class ProdutoControler {
 	
 	@Autowired
 	FornecedorRepositorio fornecedorRepositorio;
-	
-	//Listar
-	@GetMapping("/fornecedor")
-	public String abrefornecedor(Model modelo) {
-		modelo.addAttribute("listaFornecedor", fornecedorRepositorio.findAll());
-		return "abrefornecedor";
+
+	@GetMapping("/produto")
+	public String produto(Model model) {
+		
+		model.addAttribute("listaProdutos", produtoRepositorio.findAll());	
+		return "produtos";
 	}
 	
 	//From
@@ -48,25 +50,53 @@ public class ProdutoControler {
 	//Salvar/Alterar
 	
 	@PostMapping("/salvarFornecedor")
-	public String salvar(@ModelAttribute("fornecedor")Fornecedor fornecedor, Model modelo) {
+	public String salvar(@ModelAttribute("fornecedor")Empresa empresa , Model modelo,
+		@RequestParam Integer empresaId,
+		@RequestParam String nome,
+		@RequestParam Integer fornecedorId,
+		@RequestParam String unidade,
+		@RequestParam Integer quantidade,
+		@RequestParam String preco
+	) {
+
+		var emp = empresaRepositorio.findById(empresaId);
+		emp.get().getNome();
+		Produto produtos = new Produto();
+		produtos.setEmpresaId(empresaId);
+		produtos.setNome(nome);
+		produtos.setFornecedorId(fornecedorId);
+		produtos.setUnidade(unidade);
+		produtos.setQuantidade(quantidade);
+		produtos.setPreco(preco);
+
+
 		
-		fornecedorRepositorio.save(fornecedor);
+		produtoRepositorio.save(produtos);
 		
 		modelo.addAttribute("listaFornecedor", fornecedorRepositorio.findAll());
 		modelo.addAttribute("listaEmpresas", empresaRepositorio.findAll());
 		return "redirect:empresa";
 	}
 	//Deletar
-	
-	
-	
-	
+
+	@GetMapping("/deletarProdutos/{id}")
+	public String delProduto(@PathVariable("id") Integer id, Model modelo) {
+		
+		Produto produto = produtoRepositorio.findById(id)
+				.orElseThrow(()->new IllegalArgumentException("este produto nao existe "+id));
+		produtoRepositorio.delete(produto);
+				
+		modelo.addAttribute("listaFornecedor", fornecedorRepositorio.findAll());
+		modelo.addAttribute("listaEmpresas", empresaRepositorio.findAll());
+		return "redirect:/empresa";
+
+	}
+
+ 
 
 
 
 
-
-
-	
 }
+
 

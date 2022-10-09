@@ -38,23 +38,30 @@
       }
     </style>
    <div class="p-3 mb-2 bg-dark text-white">
-    <h1> <div style="text-align:center">Lista de Empresas</div> </h1>
+    <h1> <div style="text-align:center">Empresas</div> </h1>
     <a href="cadastroEmpresa">  <button class="btn btn-primary"> Nova Empresa</button></a>
     <a href="cadastroProduto"> <button class="btn btn-primary">Adicionar Produto</button></a>
-    <a href="fornecedor"> <button class="btn btn-primary">Ver Fornecedores</button></a>
+    <a href="produto"> <button class="btn btn-primary">Produtos</button></a>
+   
+    
+    
+
     <table class="table table-dark" border ="1">
        <tr>
           <td>Código Empresa</td>
           <td>Empresa</td>
           <td>Responsável</td>
           <td>CNPJ</td>
+          
           <td>Opçoes</td>
+          
        </tr>
-       <tr th:each="emp : ${listaEmpresas} ">
+       <tr th:each="emp : ${listaEmpresas} " >
           <td th:text="${emp.id}"></td>
           <td th:text="${emp.nome}"></td>
           <td th:text="${emp.responsavel}"></td>
-          <td th:text="${emp.cnpj}"></td>
+          <td th:text="${emp.cnpj}"></td> 
+          
           <td>
              <a th:href="@{/form/{id}(id=${emp.id})}"><button class="btn btn-warning">Alterar</button></a>
             <a th:href="@{/deletarEmpresa/{id}(id=${emp.id})}"><button class="btn btn-danger">Deletar</button></a>
