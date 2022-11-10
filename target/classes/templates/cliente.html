@@ -6,7 +6,7 @@
    <meta http-equiv="refresh" content=1;url="localhost:8080/empresa">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Loja Empresas</title>
+    <title>Clientes</title>
   </head>
   <style>
    body {
@@ -38,42 +38,30 @@
       }
     </style>
    <div class="p-3 mb-2 bg-dark text-white">
-    <h1> <div style="text-align:center">Empresas</div> </h1>
-    <a href="cadastroEmpresa">  <button class="btn btn-primary"> Nova Empresa</button></a>
-    <a href="cadastroProduto"> <button class="btn btn-primary">Adicionar Produto</button></a>
-    <a href="produto"> <button class="btn btn-primary">Produtos</button></a>
-    <a href="clientePessoaFisica"> <button class="btn btn-primary">Clientes</button></a>
+    <h1> <div style="text-align:center">Clientes</div> </h1>
+    <div class="p-3 mb-2 bg-dark text-white">
     
-    
-
+      <a href="cadastroClienteFisico">  <button class="btn btn-primary"> Novo Cliente</button></a>
+    </div>
     <table class="table table-dark" border ="1">
        <tr>
-          <td>Código Empresa</td>
-          <td>Empresa</td>
-          <td>Responsável</td>
-          <td>CNPJ</td>
-          
-          <td>Opçoes</td>
-          
+          <td>Código Cliente</td>
+          <td>Nome</td>
+          <td>Contato</td>
+          <td>Documento</td>
+          <td>Opções</td>
        </tr>
-       <tr th:each="emp : ${listaEmpresas} " >
-          <td th:text="${emp.id}"></td>
-          <td th:text="${emp.nome}"></td>
-          <td th:text="${emp.responsavel}"></td>
-          <td th:text="${emp.cnpj}"></td> 
-          
+       <tr th:each="cli : ${listaClientesPessoaFisica}">
+          <td th:text="${cli.id}"></td>
+          <td th:text="${cli.rg}"></td>
+          <td th:text="${#dates.format(cli.dataDeNascimento,'dd/MM/yyyy')}"></td>
+          <td th:text="${cli.cpf}"></td>
           <td>
-             <a th:href="@{/form/{id}(id=${emp.id})}"><button class="btn btn-warning">Alterar</button></a>
-            <a th:href="@{/deletarEmpresa/{id}(id=${emp.id})}"><button class="btn btn-danger">Deletar</button></a>
-            
-          </td>
-
-
-          
+            <a th:href="@{/form/{id}(id=${emp.id})}"><button class="btn btn-warning">Alterar</button></a>
+           <a th:href="@{/deletarEmpresa/{id}(id=${emp.id})}"><button class="btn btn-danger">Deletar</button></a>
+           
+         </td>
        </tr>
-    
+    </table>
   </body>
-</style>
-</div>
 </html>
-</div>
