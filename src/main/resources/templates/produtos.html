@@ -44,7 +44,7 @@
           <td>preço</td>
        </tr>
 
-
+       
        <tr th:each="emp : ${listaProdutos}">
           <td th:text="${emp.id}"></td>
           <td th:text="${emp.empresaId}"></td>   <!-- Nao consegui botar como Nome entao coloquei apenas o ID da empresa/produto-->
@@ -52,7 +52,7 @@
           <td th:text="${emp.nome}"></td>
           <td th:text="${emp.unidade}"></td>
           <td th:text="${emp.quantidade}"></td>
-          <td th:text="${emp.preco}"></td>
+          <td th:text="${emp.preco}">$</td>
          <td> <a th:href="@{/deletarProdutos/{id}(id=${emp.id})}"><button class="btn btn-danger">Deletar</button></a>
          </td>
           

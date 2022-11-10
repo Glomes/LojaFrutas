@@ -50,14 +50,14 @@
 				<label  class="col-sm-1 col-form-label">Nome:</label>
 			<input type="text" th:field="*{nome}" th:required="required" />
 			
-			<label  class="col-sm-1 col-form-label">Unidade:</label>
-			<input type="text" th:field="*{unidade}" th:required="required" />
+			<label  class="col-sm-1 col-form-label">Unidade KG :</label>
+			<input type="number" th:field="*{unidade}" th:required="required" />
 			
 			<label  class="col-sm-1 col-form-label">Quantidade:</label>
-			<input type="text" th:field="*{quantidade}" th:required="required" />
+			<input type="number" th:field="*{quantidade}" th:required="required" />
 			
 			<label class="col-sm-1 col-form-label">Preço:</label>
-			<input type="text" th:field="*{preco}" th:required="required" />
+			<input type="number" th:field="*{preco}" th:required="required" />
 
 			<input type="hidden" th:field="*{id}"th:required="required" th:value="${produto.id}">
 			
